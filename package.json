@@ -1,0 +1,128 @@
+{
+	"name": "ai-ops",
+	"publisher": "shakerg",
+	"displayName": "ai-ops",
+	"description": "Natural language application operations",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/shakerg/ai-ops"
+	},
+	"version": "0.1.0",
+	"engines": {
+		"vscode": "^1.88.0"
+	},
+	"extensionDependencies": [
+		"github.copilot-chat"
+	],
+	"categories": [
+		"Other"
+	],
+	"enabledApiProposals": [
+		"chatParticipant",
+		"chatVariableResolver",
+		"languageModels"
+	],
+	"contributes": {
+		"configuration": {
+			"title": "Environments",
+			"properties": {
+				"environments.dev": {
+					"type": "string",
+					"default": "",
+					"description": "Development environment deploy location"
+				},
+				"environments.branch": {
+					"type": "string",
+					"default": "main",
+					"description": "Branch Name "
+				},
+				"environments.repo": {
+					"type": "string",
+					"default": "$repo-path",
+					"description": "Repo Name "
+				},
+				"environments.token": {
+					"type": "string",
+					"default": "null",
+					"description": "User PAT"
+				},
+				"environments.org": {
+					"type": "string",
+					"default": "$org",
+					"description": "Org Name "
+				}
+			}
+		},
+		"chatParticipants": [
+			{
+				"id": "ai-ops",
+				"name": "ai-ops",
+				"description": "Deploy, Status or Scan a workspace",
+				"isSticky": true,
+				"commands": [
+					{
+						"name": "deploy",
+						"description": "<branch-name> <environment>"
+					},
+					{
+						"name": "status",
+						"description": "<workflow-file-name>"
+					},
+					{
+						"name": "scan",
+						"description": "<branch-name> <environment>"
+					},
+					{
+						"name": "orderFreePizzaToDesk",
+						"description": "<preferred toppings>"
+					},
+					{
+						"name": "TCDValidator",
+						"description": "TCDValidator check"
+					},
+					{
+						"name": "TCDtester",
+						"description": "TCDtester check"
+					},
+					{
+						"name": "TCDCheck",
+						"description": "TCDtester check"
+					}
+				]
+			}
+		],
+		"commands": [
+			{
+				"command": "ai-ops.namesInEditor",
+				"title": "Use ai-ops to deploy,generate tests, status or scan a workspace"
+			}
+		]
+	},
+	"main": "./out/extension.js",
+	"activationEvents": [
+		"*"
+	],
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./"
+	},
+	"devDependencies": {
+		"@types/js-yaml": "^4.0.9",
+		"@types/jsdom": "^21.1.7",
+		"@types/node": "^20.5.9",
+		"@types/vscode": "1.82.0",
+		"eslint": "^7.22.0",
+		"tslint": "^6.1.3",
+		"typescript": "^4.0.3"
+	},
+	"dependencies": {
+		"@octokit/rest": "^20.1.1",
+		"axios": "^1.6.8",
+		"dotenv": "^16.4.5",
+		"fs": "^0.0.1-security",
+		"js-yaml": "^4.1.0",
+		"jsdom": "^24.1.0",
+		"path": "^0.12.7"
+	}
+}
